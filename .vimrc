@@ -1,3 +1,20 @@
+set helplang=cn
+		set nu "显示行号
+		syntax enable
+		syntax on
+		set showcmd "输入的命令显示出来，看的清楚些
+		" 高亮显示当前行/列
+		set cursorline
+        set laststatus=2 "长久显示：1
+		set cursorcolumn
+		set hlsearch " 高亮显示搜索结果
+		"set foldmethod=manual   "手动折叠
+        set guifont=DejaVu\ Sans\ Mono\ 11 "字体大小设置
+        "set nobackup "表示不需要备份文件
+        set noswapfile "表示不创建临时交换文件
+        "set nowritebackup "表示编辑的时候不需要备份文件
+        "set noundofile "表示不创建撤销文件
+
 "/////////////////////////////////////////////////////////////////////////////
 " basic
 "/////////////////////////////////////////////////////////////////////////////
@@ -119,7 +136,7 @@ else
     set t_Co=256 " make sure our terminal use 256 color
     let g:solarized_termcolors = 256
 endif
-colorscheme solarized
+colorscheme space-vim-dark
 " colorscheme exlightgray
 " colorscheme gruvbox
 
@@ -445,13 +462,13 @@ nnoremap <silent> <leader>y2 :let @*=fnamemodify(bufname('%'),":p:t")<CR>
 " copy full path to clipboard, foo/bar/foobar.c => foo/bar/foobar.c
 nnoremap <silent> <leader>y3 :let @*=fnamemodify(bufname('%'),":p")<CR>
 
-" F8 or <leader>/:  Set Search pattern highlight on/off
-nnoremap <F8> :let @/=""<CR>
+" F3 or <leader>/:  Set Search pattern highlight on/off
+nnoremap <F3> :let @/=""<CR>
 nnoremap <leader>/ :let @/=""<CR>
 " DISABLE: though nohlsearch is standard way in Vim, but it will not erase the
 "          search pattern, which is not so good when use it with exVim's <leader>r
 "          filter method
-" nnoremap <F8> :nohlsearch<CR>
+" nnoremap <F3> :nohlsearch<CR>
 " nnoremap <leader>/ :nohlsearch<CR>
 
 " map Ctrl-Tab to switch window

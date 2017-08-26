@@ -17,7 +17,7 @@ Plugin 'gmarik/Vundle.vim'
 
 " ex-config:
 " ---------------------------------------------------
-Plugin 'exvim/ex-config'
+Plugin 'borneywpf/ex-config'
 nnoremap <unique> <leader>ve :call exconfig#edit_cur_vimentry ()<CR>
 
 " ex-utility:
@@ -37,7 +37,7 @@ Plugin 'exvim/ex-aftercolors'
 
 " ex-vimentry
 " ---------------------------------------------------
-Plugin 'exvim/ex-vimentry'
+Plugin 'borneywpf/ex-vimentry'
 
 " ex-project
 " ---------------------------------------------------
@@ -105,7 +105,7 @@ nnoremap <unique> <silent> <F4> :TlistToggle<CR>
 "let Tlist_Ctags_Cmd = $VIM.'/vimfiles/ctags.exe' " location of ctags tool
 let Tlist_Show_One_File = 1 " Displaying tags for only one file~
 let Tlist_Exist_OnlyWindow = 1 " if you are the last, kill yourself
-let Tlist_Use_Right_Window = 1 " split to the right side of the screen
+let Tlist_Use_Left_Window = 1 " split to the right side of the screen
 let Tlist_Sort_Type = "order" " sort by order or name
 let Tlist_Display_Prototype = 0 " do not show prototypes and not tags in the taglist window.
 let Tlist_Compart_Format = 1 " Remove extra information and blank lines from the taglist window.
@@ -114,7 +114,7 @@ let Tlist_Display_Tag_Scope = 1 " Show tag scope next to the tag name.
 let Tlist_Close_On_Select = 0 " Close the taglist window when a file or tag is selected.
 let Tlist_BackToEditBuffer = 0 " If no close on select, let the user choose back to edit buffer or not
 let Tlist_Enable_Fold_Column = 0 " Don't Show the fold indicator column in the taglist window.
-let Tlist_WinWidth = 40
+let Tlist_WinWidth = 26
 let Tlist_Compact_Format = 1 " do not show help
 " let Tlist_Ctags_Cmd = 'ctags --c++-kinds=+p --fields=+iaS --extra=+q --languages=c++'
 " very slow, so I disable this
@@ -238,7 +238,7 @@ Plugin 'exvim/ex-searchcompl'
 
 " ex-colorschemes
 " ---------------------------------------------------
-Plugin 'exvim/ex-colorschemes'
+Plugin 'borneywpf/ex-colorschemes'
 
 " vim-color-solarized
 " ---------------------------------------------------
@@ -298,7 +298,8 @@ xmap s <Plug>VSurround
 " nerdtree: invoke by :NERDTreeToggle
 " ---------------------------------------------------
 Plugin 'scrooloose/nerdtree'
-
+nnoremap <unique> <silent> <F8> :NERDTreeToggle<CR>
+let g:NERDTreeWinPos = "right"
 let g:NERDTreeWinSize = 30
 let g:NERDTreeMouseMode = 1
 let g:NERDTreeMapToggleZoom = '<Space>'

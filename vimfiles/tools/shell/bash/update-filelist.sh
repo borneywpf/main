@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # create files
 echo "Creating Filelist..."
@@ -26,11 +26,14 @@ if test "${FOLDERS}" != ""; then
 else
     find ${FORCE_POSIX_REGEX_1} . -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" > "${TMP}"
 
-    if [[ "${FILE_SUFFIXS}" =~ __EMPTY__ ]]; then
-        find ${FORCE_POSIX_REGEX_1} . -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" |grep  -v  "\.\w*$" |xargs -i sh -c 'file="{}";type=$(file $file);[[ $type =~ "text" ]] && echo $file' >> "${TMP}"
+    if [ "${FILE_SUFFIXS}" != __EMPTY__  ]; then
+        find ${FORCE_POSIX_REGEX_1} . -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" |grep  -v  "\.\w*$" |xargs -i sh -c 'file="{}";type=$(file $file);[ "$type" != "text" ] && echo $file' >> "${TMP}"
     fi
 
 fi
+
+echo "  |- generate ${DATA_TMP}"
+     find ${FORCE_POSIX_REGEX_1} .  -type f -not -path "./.*" -name '*.c' -o -name '*.cpp' -o -name '*.java' -o -name '*.h' -o -name "*.cc" -o -name "*.l" -o -name "*.y" | egrep -v "\/out\/" | sort -f >${DATA_TMP}
 
 # DISABLE
 # # find . -type f -not -path "*/\.*" > "${TMP}"
@@ -45,6 +48,11 @@ fi
 if [ -f "${TMP}" ]; then
     echo "  |- move ${TMP} to ${TARGET}"
     mv -f "${TMP}" "${TARGET}"
+fi
+
+if [ -f "${DATA_TMP}" ]; then
+    echo "  |- move ${DATA_TMP} to ${DATA_TARGET}"
+    mv -f "${DATA_TMP}" "${DATA_TARGET}"
 fi
 
 if [ -f "${TARGET}" ]; then
