@@ -9,7 +9,6 @@ set helplang=cn
 		set cursorcolumn
 		set hlsearch " 高亮显示搜索结果
 		"set foldmethod=manual   "手动折叠
-        set guifont=DejaVu\ Sans\ Mono\ 11 "字体大小设置
         "set nobackup "表示不需要备份文件
         set noswapfile "表示不创建临时交换文件
         "set nowritebackup "表示编辑的时候不需要备份文件
@@ -214,20 +213,20 @@ if has('gui_running')
     function! s:set_gui_font()
         if has('gui_gtk2')
             if getfontname( 'DejaVu Sans Mono for Powerline' ) != ''
-                set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 12
+                set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 11
             elseif getfontname( 'DejaVu Sans Mono' ) != ''
-                set guifont=DejaVu\ Sans\ Mono\ 12
+                set guifont=DejaVu\ Sans\ Mono\ 11
             else
-                set guifont=Luxi\ Mono\ 12
+                set guifont=Luxi\ Mono\ 11
             endif
         elseif has('x11')
             " Also for GTK 1
             set guifont=*-lucidatypewriter-medium-r-normal-*-*-180-*-*-m-*-*
         elseif OSX()
             if getfontname( 'DejaVu Sans Mono for Powerline' ) != ''
-                set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h15
+                set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h11
             elseif getfontname( 'DejaVu Sans Mono' ) != ''
-                set guifont=DejaVu\ Sans\ Mono:h15
+                set guifont=DejaVu\ Sans\ Mono:h11
             endif
         elseif WINDOWS()
             if getfontname( 'DejaVu Sans Mono for Powerline' ) != ''
