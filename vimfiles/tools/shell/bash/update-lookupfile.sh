@@ -14,7 +14,8 @@ else
 fi
 
 echo "  |- generate ${TARGET}"
-find . -type f ! -path "./.*" ! -path "./out/*" -printf "%f\t%p\t1\n" > ${TMP}
+echo -e "!_TAG_FILE_SORTED\t2\t/2=foldcase/" > ${TMP}
+find . -not -regex '.*\.\(png\|gif\)' -type f ! -path "./.*" ! -path "./out/*" -printf "%f\t%p\t1\n" >> ${TMP}
 
 if [ -f "${TMP}" ]; then
     echo "  |- move ${TMP} to ${TARGET}"

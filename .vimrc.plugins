@@ -62,12 +62,23 @@ call extags#register_hotkey( 101, 0, '<leader>]', ":EXTagsCWord<CR>", 'Tag selec
 " lookupfile
 " ---------------------------------------------------
 Plugin 'vim-scripts/lookupfile'
-nnoremap <unique> <silent> <F2> :LookupFile<CR>
-let g:LookupFile_MinPatLength = 4               "最少输入4个字符才开始查找
+if !hasmapto('<Plug>LookupFile', 'n') 
+    nmap <unique> <silent> <C-F5> <Plug>LookupFile 
+endif
+if !hasmapto('<Plug>LookupFile', 'i') 
+    imap <unique> <silent> <C-F5> <C-O><Plug>LookupFile 
+endif 
+let g:LookupFile_MinPatLength = 4               "最少输入2个字符才开始查找
 let g:LookupFile_PreserveLastPattern = 0        "不保存上次查找的字符串
 let g:LookupFile_PreservePatternHistory = 1     "保存查找历史
 let g:LookupFile_AlwaysAcceptFirst = 1          "回车打开第一个匹配项目
 let g:LookupFile_AllowNewFiles = 0              "不允许创建不存在的文件
+"映射LookupFile为,lk
+nmap <silent> <leader>lk :LUTags<cr>
+"映射LUBufs为,ll
+nmap <silent> <leader>ll :LUBufs<cr>
+"映射LUWalk为,lw
+nmap <silent> <leader>lw :LUWalk<cr>
 
 " genutils
 " ---------------------------------------------------
