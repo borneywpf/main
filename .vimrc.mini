@@ -8,7 +8,7 @@ exec 'set rtp+=' . fnameescape ( cwd . '/vimfiles/bundle/Vundle.vim/' )
 call vundle#rc(cwd.'/vimfiles/bundle/')
 
 " =======================================================
-
+call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'borneywpf/ex-config'
 Plugin 'exvim/ex-utility'
@@ -55,7 +55,7 @@ Plugin 'groenewege/vim-less'
 Plugin 'wavded/vim-stylus'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'vim-scripts/lookupfile'
-
+call vundle#end()
 " =======================================================
 
 filetype plugin indent on " required

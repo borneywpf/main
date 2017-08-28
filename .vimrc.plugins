@@ -61,7 +61,7 @@ call extags#register_hotkey( 101, 0, '<leader>]', ":EXTagsCWord<CR>", 'Tag selec
 
 " ---------------------------------------------------
 Plugin 'vim-scripts/lookupfile'
-nnoremap <unique> <silent> <F5> :LookupFile<CR>
+nnoremap <unique> <silent> <F2> :LookupFile<CR>
 let g:LookupFile_MinPatLength = 4               "最少输入4个字符才开始查找
 let g:LookupFile_PreserveLastPattern = 0        "不保存上次查找的字符串
 let g:LookupFile_PreservePatternHistory = 1     "保存查找历史
