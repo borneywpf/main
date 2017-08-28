@@ -16,6 +16,16 @@ fi
 # get filelist
 echo "  |- generate ${TMP}"
 
+echo FOLDERS=${FOLDERS}
+echo FORCE_POSIX_REGEX_1=${FORCE_POSIX_REGEX_1}
+echo FORCE_POSIX_REGEX_2=${FORCE_POSIX_REGEX_2}
+echo IS_EXCLUDE=${IS_EXCLUDE}
+echo FILE_SUFFIXS=${FILE_SUFFIXS}
+echo TMP=${TMP}
+echo TARGET=${TARGET}
+echo DATA_TMP=${DATA_TMP}
+echo DATA_TARGET=${DATA_TARGET}
+
 if test "${FOLDERS}" != ""; then
     find ${FORCE_POSIX_REGEX_1} . -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} ${IS_EXCLUDE} -regex ".*/("${FOLDERS}")/.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" > "${TMP}"
 

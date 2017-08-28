@@ -59,6 +59,15 @@ call extags#register_hotkey( 100, 0, '<leader>ts', ":EXTagsToggle<CR>", 'Toggle 
 call extags#register_hotkey( 101, 0, '<leader>]', ":EXTagsCWord<CR>", 'Tag select current word.' )
 " DISABLE: nnoremap <unique> <leader>] :exec 'ts ' . expand('<cword>')<CR>
 
+" ---------------------------------------------------
+Plugin 'vim-scripts/lookupfile'
+nnoremap <unique> <silent> <F5> :LookupFile<CR>
+let g:LookupFile_MinPatLength = 4               "最少输入4个字符才开始查找
+let g:LookupFile_PreserveLastPattern = 0        "不保存上次查找的字符串
+let g:LookupFile_PreservePatternHistory = 1     "保存查找历史
+let g:LookupFile_AlwaysAcceptFirst = 1          "回车打开第一个匹配项目
+let g:LookupFile_AllowNewFiles = 0              "不允许创建不存在的文件
+
 " ex-symbol
 " ---------------------------------------------------
 Plugin 'exvim/ex-symbol'
