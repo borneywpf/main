@@ -54,6 +54,7 @@ Plugin 'digitaltoad/vim-jade'
 Plugin 'groenewege/vim-less'
 Plugin 'wavded/vim-stylus'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'vim-scripts/genutils'
 Plugin 'vim-scripts/lookupfile'
 call vundle#end()
 " =======================================================
