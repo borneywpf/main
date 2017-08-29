@@ -61,13 +61,7 @@ call extags#register_hotkey( 101, 0, '<leader>]', ":EXTagsCWord<CR>", 'Tag selec
 
 " lookupfile
 " ---------------------------------------------------
-Plugin 'vim-scripts/lookupfile'
-if !hasmapto('<Plug>LookupFile', 'n') 
-    nmap <unique> <silent> <C-F5> <Plug>LookupFile 
-endif
-if !hasmapto('<Plug>LookupFile', 'i') 
-    imap <unique> <silent> <C-F5> <C-O><Plug>LookupFile 
-endif 
+Plugin 'borneywpf/lookupfile'
 let g:LookupFile_MinPatLength = 4               "最少输入2个字符才开始查找
 let g:LookupFile_PreserveLastPattern = 0        "不保存上次查找的字符串
 let g:LookupFile_PreservePatternHistory = 1     "保存查找历史
@@ -323,7 +317,7 @@ xmap s <Plug>VSurround
 " nerdtree: invoke by :NERDTreeToggle
 " ---------------------------------------------------
 Plugin 'scrooloose/nerdtree'
-nnoremap <unique> <silent> <F8> :NERDTreeToggle<CR>
+nnoremap <unique> <silent> <C-F8> :NERDTreeToggle<CR>
 let g:NERDTreeWinPos = "right"
 let g:NERDTreeWinSize = 30
 let g:NERDTreeMouseMode = 1

@@ -55,7 +55,7 @@ Plugin 'groenewege/vim-less'
 Plugin 'wavded/vim-stylus'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'vim-scripts/genutils'
-Plugin 'vim-scripts/lookupfile'
+Plugin 'borneywpf/lookupfile'
 call vundle#end()
 " =======================================================
 
