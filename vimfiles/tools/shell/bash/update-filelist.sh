@@ -27,23 +27,23 @@ echo DATA_TMP=${DATA_TMP}
 echo DATA_TARGET=${DATA_TARGET}
 
 if test "${FOLDERS}" != ""; then
-    find ${FORCE_POSIX_REGEX_1} . -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} ${IS_EXCLUDE} -regex ".*/("${FOLDERS}")/.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" > "${TMP}"
+    find ${FORCE_POSIX_REGEX_1} ./ -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} ${IS_EXCLUDE} -regex ".*/("${FOLDERS}")/.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" > "${TMP}"
 
     if [[ "${FILE_SUFFIXS}" != __EMPTY__ ]]; then
-        find ${FORCE_POSIX_REGEX_1} . -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} ${IS_EXCLUDE} -regex ".*/("${FOLDERS}")/.*" ${FORCE_POSIX_REGEX_2}  |grep  -v  "\.\w*$" |xargs -i sh -c 'file="{}";type=$(file $file);[[ $type =~ "text" ]] && echo $file' >> "${TMP}"
+        find ${FORCE_POSIX_REGEX_1} ./ -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} ${IS_EXCLUDE} -regex ".*/("${FOLDERS}")/.*" ${FORCE_POSIX_REGEX_2}  |grep  -v  "\.\w*$" |xargs -i sh -c 'file="{}";type=$(file $file);[[ $type =~ "text" ]] && echo $file' >> "${TMP}"
     fi
 
 else
-    find ${FORCE_POSIX_REGEX_1} . -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" > "${TMP}"
+    find ${FORCE_POSIX_REGEX_1} ./ -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" > "${TMP}"
 
     if [ "${FILE_SUFFIXS}" != __EMPTY__  ]; then
-        find ${FORCE_POSIX_REGEX_1} . -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" |grep  -v  "\.\w*$" |xargs -i sh -c 'file="{}";type=$(file $file);[ "$type" != "text" ] && echo $file' >> "${TMP}"
+        find ${FORCE_POSIX_REGEX_1} ./ -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" |grep  -v  "\.\w*$" |xargs -i sh -c 'file="{}";type=$(file $file);[ "$type" != "text" ] && echo $file' >> "${TMP}"
     fi
 
 fi
 
 echo "  |- generate ${DATA_TMP}"
-     find ${FORCE_POSIX_REGEX_1} .  -type f -not -path "./.*" -name '*.c' -o -name '*.cpp' -o -name '*.java' -o -name '*.h' -o -name "*.cc" -o -name "*.l" -o -name "*.y" | egrep -v "\/out\/" | sort -f >${DATA_TMP}
+     find ${FORCE_POSIX_REGEX_1} ./  -type f -not -path "./.*" -name '*.c' -o -name '*.cpp' -o -name '*.java' -o -name '*.h' -o -name "*.cc" -o -name "*.l" -o -name "*.y" | egrep -v "\/out\/" | sort -f >${DATA_TMP}
 
 # DISABLE
 # # find . -type f -not -path "*/\.*" > "${TMP}"
