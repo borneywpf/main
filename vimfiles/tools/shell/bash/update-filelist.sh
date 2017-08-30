@@ -67,7 +67,7 @@ fi
 
 if [ -f "${DATA_TMP}" ]; then
     echo "  |- move ${DATA_TMP} to ${DATA_TARGET}"
-    ${DATA_TMP}.tmp
+    rm ${DATA_TMP}.tmp
     mv -f "${DATA_TMP}" "${DATA_TARGET}"
 fi
 
