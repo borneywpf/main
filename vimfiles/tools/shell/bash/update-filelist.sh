@@ -3,8 +3,10 @@
 # create files
 echo "Creating Filelist..."
 
+ROOT_DIR=`pwd`
+
 # test posix regex
-find . -maxdepth 1 -regextype posix-extended -regex "test" > /dev/null 2>&1
+find $ROOT_DIR -maxdepth 1 -regextype posix-extended -regex "test" > /dev/null 2>&1
 if test "$?" = "0"; then
     FORCE_POSIX_REGEX_1=""
     FORCE_POSIX_REGEX_2="-regextype posix-extended"
@@ -25,8 +27,6 @@ echo "  |- generate ${TMP}"
 #echo TARGET=${TARGET}
 #echo DATA_TMP=${DATA_TMP}
 #echo DATA_TARGET=${DATA_TARGET}
-
-ROOT_DIR=`pwd`
 
 if test "${FOLDERS}" != ""; then
     find ${FORCE_POSIX_REGEX_1} ${ROOT_DIR} -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} ${IS_EXCLUDE} -regex ".*/("${FOLDERS}")/.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" > "${TMP}"
