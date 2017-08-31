@@ -445,10 +445,15 @@ map <leader><leader>l <Plug>(easymotion-lineforward)
 map <leader><leader>h <Plug>(easymotion-linebackward)
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 
+" hugefile
+" ---------------------------------------------------
+Plugin 'borneywpf/vim-hugefile'
+letg：hugefile_trigger_size= 5 " files >= 5MB
+
 " LargeFile
 " ---------------------------------------------------
 Plugin 'vim-scripts/LargeFile'
-let g:LargeFile= 5 " files >= 5MB will use LargeFile rules
+"let g:LargeFile= 5 " files >= 5MB will use LargeFile rules
 
 "}}}
 
