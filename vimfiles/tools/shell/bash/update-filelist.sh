@@ -53,7 +53,7 @@ else
    find ${FORCE_POSIX_REGEX_1} ${ROOT_DIR} -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" > "${DATA_TMP_FILE}"
 fi
 
-egrep '*\.(java|c|cpp|h|l|y|cc)$' ${DATA_TMP_FILE} > "${DATA_TMP}"
+egrep -i '*\.(java|c|cpp|h|l|y|cc)$' ${DATA_TMP_FILE} > "${DATA_TMP}"
 
 # DISABLE
 # # find . -type f -not -path "*/\.*" > "${TMP}"
