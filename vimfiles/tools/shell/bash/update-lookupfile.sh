@@ -40,7 +40,7 @@ fi
 GREP_TMP_FILE=${TMP_FILE}.grep
 cat ${TMP_FILE} | while read line
 do
-    LINE_TMP=$(echo "${line}" | cut -f 2 | egrep -i -v "*\.(png|jar|gif|jpg|zip|gz|so|o)$")
+    LINE_TMP=$(echo "${line}" | cut -f 2 | egrep -i -v "*\.(png|jar|gif|jpg|zip|tar.gz|tar|rar|exe|pyc|so|o|dll)$")
     if [ -n "$LINE_TMP" ];then
         echo  "${line}" >> "${GREP_TMP_FILE}"
     fi
