@@ -42,13 +42,18 @@ else
     fi
 
 fi
+
 echo "  |- generate ${DATA_TMP}"
+
+DATA_TMP_FILE="${DATA_TMP}".tmp
+
 if test "${FOLDERS}" != ""; then
-     find ${FORCE_POSIX_REGEX_1} ${ROOT_DIR} -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} ${IS_EXCLUDE} -regex ".*/("${FOLDERS}")/.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" > "${DATA_TMP}".tmp
+     find ${FORCE_POSIX_REGEX_1} ${ROOT_DIR} -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} ${IS_EXCLUDE} -regex ".*/("${FOLDERS}")/.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" > "${DATA_TMP_FILE}"
 else
-   find ${FORCE_POSIX_REGEX_1} ${ROOT_DIR} -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" > "${DATA_TMP}".tmp
+   find ${FORCE_POSIX_REGEX_1} ${ROOT_DIR} -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" > "${DATA_TMP_FILE}"
 fi
-egrep '*\.(java|c|cpp|h|l|y|cc)$' ${DATA_TMP}.tmp > "${DATA_TMP}"
+
+egrep '*\.(java|c|cpp|h|l|y|cc)$' ${DATA_TMP_FILE} > "${DATA_TMP}"
 
 # DISABLE
 # # find . -type f -not -path "*/\.*" > "${TMP}"
@@ -67,7 +72,7 @@ fi
 
 if [ -f "${DATA_TMP}" ]; then
     echo "  |- move ${DATA_TMP} to ${DATA_TARGET}"
-    rm ${DATA_TMP}.tmp
+    rm ${DATA_TMP_FILE}
     mv -f "${DATA_TMP}" "${DATA_TARGET}"
 fi
 
