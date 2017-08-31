@@ -305,8 +305,6 @@ Plugin 'morhetz/gruvbox'
 " learn from:http://www.wklken.me/posts/2015/06/07/vim-plugin-ctrlp.html
 " ctrlp: invoke by <ctrl-p>
 Plugin 'ctrlpvim/ctrlp.vim'
-let g:ctrlp_map = '<leader>p'
-let g:ctrlp_cmd = 'CtrlP'
 map <leader>f :CtrlPMRU<CR>
 let g:ctrlp_custom_ignore = {
     \ 'dir':  '\v[\/]\.(git|hg|svn|rvm|repo)$',
@@ -472,12 +470,12 @@ let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 " hugefile
 " ---------------------------------------------------
 Plugin 'borneywpf/vim-hugefile'
-letg：hugefile_trigger_size= 5 " files >= 5MB
+let g:hugefile_trigger_size=5 " files >= 5MB
 
 " LargeFile
 " ---------------------------------------------------
 Plugin 'vim-scripts/LargeFile'
-"let g:LargeFile= 5 " files >= 5MB will use LargeFile rules
+"let g:LargeFile=5 " files >= 5MB will use LargeFile rules
 
 "}}}
 
