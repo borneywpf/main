@@ -18,30 +18,22 @@ fi
 # get filelist
 echo "  |- generate ${TMP}"
 
-#echo FOLDERS=${FOLDERS}
-#echo FORCE_POSIX_REGEX_1=${FORCE_POSIX_REGEX_1}
-#echo FORCE_POSIX_REGEX_2=${FORCE_POSIX_REGEX_2}
-#echo IS_EXCLUDE=${IS_EXCLUDE}
-#echo FILE_SUFFIXS=${FILE_SUFFIXS}
-#echo TMP=${TMP}
-#echo TARGET=${TARGET}
-#echo DATA_TMP=${DATA_TMP}
-#echo DATA_TARGET=${DATA_TARGET}
+TMP_FILE="${TMP}".tmp
 
 if test "${FOLDERS}" != ""; then
-    find ${FORCE_POSIX_REGEX_1} ${ROOT_DIR} -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} ${IS_EXCLUDE} -regex ".*/("${FOLDERS}")/.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" > "${TMP}"
+    find ${FORCE_POSIX_REGEX_1} ${ROOT_DIR} -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} ${IS_EXCLUDE} -regex ".*/("${FOLDERS}")/.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" > "${TMP_FILE}"
     if [ "${FILE_SUFFIXS}" != __EMPTY__  ]; then
-        find ${FORCE_POSIX_REGEX_1} ${ROOT_DIR} -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} ${IS_EXCLUDE} -regex ".*/("${FOLDERS}")/.*" ${FORCE_POSIX_REGEX_2}  | grep  -v  "\.\w*$" |xargs -i sh -c 'file="{}";type=$(file $file);[ "$type" != "text" ] && echo $file' >> "${TMP}"
+        find ${FORCE_POSIX_REGEX_1} ${ROOT_DIR} -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} ${IS_EXCLUDE} -regex ".*/("${FOLDERS}")/.*" ${FORCE_POSIX_REGEX_2}  | grep  -v  "\.\w*$" |xargs -i sh -c 'file="{}";type=$(file $file);[ "$type" != "text" ] && echo $file' >> "${TMP_FILE}"
     fi
 
 else
-    find ${FORCE_POSIX_REGEX_1} ${ROOT_DIR} -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" > "${TMP}"
+    find ${FORCE_POSIX_REGEX_1} ${ROOT_DIR} -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" > "${TMP_FILE}"
 
     if [ "${FILE_SUFFIXS}" != __EMPTY__  ]; then
-        find ${FORCE_POSIX_REGEX_1} ${ROOT_DIR} -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" |grep  -v  "\.\w*$" |xargs -i sh -c 'file="{}";type=$(file "$type");[ "$type" != "text" ] && echo $file' >> "${TMP}"
+        find ${FORCE_POSIX_REGEX_1} ${ROOT_DIR} -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" |grep  -v  "\.\w*$" |xargs -i sh -c 'file="{}";type=$(file "$type");[ "$type" != "text" ] && echo $file' >> "${TMP_FILE}"
     fi
-
 fi
+egrep -i -v '*\.(png|jar|gif|jpg|zip|tar.gz|tar|rar|exe|pyc|so|o|dll)$' ${TMP_FILE} > "${TMP}"
 
 echo "  |- generate ${DATA_TMP}"
 
@@ -67,6 +59,7 @@ egrep -i '*\.(java|c|cpp|h|l|y|cc)$' ${DATA_TMP_FILE} > "${DATA_TMP}"
 # replace old file
 if [ -f "${TMP}" ]; then
     echo "  |- move ${TMP} to ${TARGET}"
+    rm ${TMP_FILE}
     mv -f "${TMP}" "${TARGET}"
 fi
 
