@@ -26,7 +26,7 @@ Plugin 'exvim/ex-autocomplpop'
 Plugin 'exvim/ex-showmarks'
 Plugin 'exvim/ex-visincr'
 Plugin 'exvim/ex-matchit'
-Plugin 'exvim/ex-easyhl'
+"Plugin 'exvim/ex-easyhl'
 Plugin 'exvim/ex-searchcompl'
 Plugin 'borneywpf/ex-colorschemes'
 Plugin 'altercation/vim-colors-solarized'
@@ -58,6 +58,7 @@ Plugin 'wavded/vim-stylus'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'vim-scripts/genutils'
 Plugin 'borneywpf/lookupfile'
+Plugin 'Yggdroot/LeaderF'
 call vundle#end()
 " =======================================================
 
