@@ -58,7 +58,7 @@ Plugin 'wavded/vim-stylus'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'vim-scripts/genutils'
 Plugin 'borneywpf/lookupfile'
-Plugin 'Yggdroot/LeaderF'
+"Plugin 'Yggdroot/LeaderF'
 call vundle#end()
 " =======================================================
 

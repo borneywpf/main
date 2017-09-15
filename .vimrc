@@ -525,3 +525,6 @@ endif
 "////////////////////////////////////////////////////////////////////////////
 let g:ex_plugin_registered_bufnames = ["-MiniBufExplorer-","__Tag_List__","\[Lookup File\]", "\[BufExplorer\]"] 
 set ignorecase
+if !has("python") && !has("python3")
+    let g:leaderf_loaded = 1
+endif

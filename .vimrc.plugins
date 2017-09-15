@@ -333,7 +333,8 @@ let g:ctrlp_extensions = ['funky']
 
 " Yggdroot/LeaderF
 " ---------------------------------------------------
-Plugin 'Yggdroot/LeaderF'
+"Plugin 'Yggdroot/LeaderF'
+"let g:Lf_ShortcutF = '<C-B>'
 
 " vim-fugitive: invoke most by :Gdiff
 " ---------------------------------------------------
