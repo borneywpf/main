@@ -21,31 +21,20 @@ echo "  |- generate ${TMP}"
 TMP_FILE="${TMP}".tmp
 
 if test "${FOLDERS}" != ""; then
-    find ${FORCE_POSIX_REGEX_1} ${ROOT_DIR} -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} ${IS_EXCLUDE} -regex ".*/("${FOLDERS}")/.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" > "${TMP_FILE}"
-    if [ "${FILE_SUFFIXS}" != __EMPTY__  ]; then
-        find ${FORCE_POSIX_REGEX_1} ${ROOT_DIR} -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} ${IS_EXCLUDE} -regex ".*/("${FOLDERS}")/.*" ${FORCE_POSIX_REGEX_2}  | grep  -v  "\.\w*$" |xargs -i sh -c 'file="{}";type=$(file $file);[ "$type" != "text" ] && echo $file' >> "${TMP_FILE}"
-    fi
-
+    find ${FORCE_POSIX_REGEX_1} . -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} ${IS_EXCLUDE} -regex ".*/("${FOLDERS}")/.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" -exec grep -Iq . {} \; -and -print > "${TMP}"
 else
-    find ${FORCE_POSIX_REGEX_1} ${ROOT_DIR} -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" > "${TMP_FILE}"
+    find ${FORCE_POSIX_REGEX_1} . -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" -exec grep -Iq . {} \; -and -print > "${TMP}"
 
-    if [ "${FILE_SUFFIXS}" != __EMPTY__  ]; then
-        find ${FORCE_POSIX_REGEX_1} ${ROOT_DIR} -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" |grep  -v  "\.\w*$" |xargs -i sh -c 'file="{}";type=$(file "$type");[ "$type" != "text" ] && echo $file' >> "${TMP_FILE}"
-    fi
 fi
-egrep -i -v '*\.(png|jar|gif|jpg|zip|tar.gz|tar|rar|exe|pyc|so|o|dll)$' ${TMP_FILE} > "${TMP}"
 
 echo "  |- generate ${DATA_TMP}"
 
-DATA_TMP_FILE="${DATA_TMP}".tmp
-
 if test "${FOLDERS}" != ""; then
-     find ${FORCE_POSIX_REGEX_1} ${ROOT_DIR} -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} ${IS_EXCLUDE} -regex ".*/("${FOLDERS}")/.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" > "${DATA_TMP_FILE}"
+    find ${FORCE_POSIX_REGEX_1} . -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} ${IS_EXCLUDE} -regex ".*/("${FOLDERS}")/.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" -exec grep -Iq . {} \; -and -print > "${DATA_TMP}"
 else
-   find ${FORCE_POSIX_REGEX_1} ${ROOT_DIR} -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" > "${DATA_TMP_FILE}"
+    find ${FORCE_POSIX_REGEX_1} . -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" -exec grep -Iq . {} \; -and -print > "${DATA_TMP}"
 fi
 
-egrep -i '*\.(java|c|cpp|h|l|y|cc)$' ${DATA_TMP_FILE} > "${DATA_TMP}"
 
 # DISABLE
 # # find . -type f -not -path "*/\.*" > "${TMP}"
@@ -59,13 +48,11 @@ egrep -i '*\.(java|c|cpp|h|l|y|cc)$' ${DATA_TMP_FILE} > "${DATA_TMP}"
 # replace old file
 if [ -f "${TMP}" ]; then
     echo "  |- move ${TMP} to ${TARGET}"
-    rm ${TMP_FILE}
     mv -f "${TMP}" "${TARGET}"
 fi
 
 if [ -f "${DATA_TMP}" ]; then
     echo "  |- move ${DATA_TMP} to ${DATA_TARGET}"
-    rm ${DATA_TMP_FILE}
     mv -f "${DATA_TMP}" "${DATA_TARGET}"
 fi
 
