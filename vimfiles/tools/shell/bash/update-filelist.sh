@@ -27,14 +27,6 @@ else
 
 fi
 
-echo "  |- generate ${DATA_TMP}"
-
-if test "${FOLDERS}" != ""; then
-    find ${FORCE_POSIX_REGEX_1} . -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} ${IS_EXCLUDE} -regex ".*/("${FOLDERS}")/.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" -exec grep -Iq . {} \; -and -print > "${DATA_TMP}"
-else
-    find ${FORCE_POSIX_REGEX_1} . -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" -exec grep -Iq . {} \; -and -print > "${DATA_TMP}"
-fi
-
 
 # DISABLE
 # # find . -type f -not -path "*/\.*" > "${TMP}"
@@ -49,11 +41,8 @@ fi
 if [ -f "${TMP}" ]; then
     echo "  |- move ${TMP} to ${TARGET}"
     mv -f "${TMP}" "${TARGET}"
-fi
-
-if [ -f "${DATA_TMP}" ]; then
-    echo "  |- move ${DATA_TMP} to ${DATA_TARGET}"
-    mv -f "${DATA_TMP}" "${DATA_TARGET}"
+    echo "  |- cp ${TARGET} to ${DATA_TARGET}"
+    cp "${TARGET}" "${DATA_TARGET}"
 fi
 
 if [ -f "${TARGET}" ]; then
