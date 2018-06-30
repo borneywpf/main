@@ -74,45 +74,45 @@ nmap <silent> <leader>lk :LUTags<cr>
 "映射LUBufs为,ll
 nmap <silent> <leader>ll :LUBufs<cr>
 "映射LUWalk为,lw
-nmap <silent> <leader>lw :LUWalk<cr>
+"nmap <silent> <leader>lw :LUWalk<cr>
 " lookup file with fuzzy search
 
-function! LookupFile_FuzzyFunc(pattern)
-    let _tags = &tags
-    try
-        let &tags = eval(g:LookupFile_TagExpr)
-        " let newpattern = '\c' . a:pattern
-        " let tags = taglist(newpattern)
+"function! LookupFile_FuzzyFunc(pattern)
+"    let _tags = &tags
+"    try
+"        let &tags = eval(g:LookupFile_TagExpr)
+"        " let newpattern = '\c' . a:pattern
+"        " let tags = taglist(newpattern)
 
 
-        " search fuzzy
-        let pattern_len = strlen(a:pattern)
-        let pattern_idx = 0
-        let fuzzy_pattern = '\c'
-        while pattern_idx < pattern_len
-            let fuzzy_pattern = fuzzy_pattern . a:pattern[pattern_idx] . '.*'
-            let pattern_idx = pattern_idx + 1
-        endwhile
-        let tags = taglist(fuzzy_pattern)
-    catch
-        echohl ErrorMsg | echo "Exception: " . v:exception | echohl NONE
-        return ""
-    finally
-        let &tags = _tags
-    endtry
+"        " search fuzzy
+"        let pattern_len = strlen(a:pattern)
+"        let pattern_idx = 0
+"        let fuzzy_pattern = '\c'
+"        while pattern_idx < pattern_len
+"            let fuzzy_pattern = fuzzy_pattern . a:pattern[pattern_idx] . '.*'
+"            let pattern_idx = pattern_idx + 1
+"        endwhile
+"        let tags = taglist(fuzzy_pattern)
+"    catch
+"        echohl ErrorMsg | echo "Exception: " . v:exception | echohl NONE
+"        return ""
+"    finally
+"        let &tags = _tags
+"    endtry
 
 
     " Show the matches for what is typed so far.
     " let files = map(tags, 'v:val["filename"]')
-    let files = map(tags, '{'.
-          \ '"word": fnamemodify(v:val["filename"], ":~:p"), '.
-          \ '"abbr": v:val["name"], '.
-          \ '"menu": fnamemodify(v:val["filename"], ":~:h"), '.
-          \ '"dup": 1, '.
-          \ '}')
-    return files
-endfunction
-let g:LookupFile_LookupFunc = 'LookupFile_FuzzyFunc'
+"    let files = map(tags, '{'.
+"          \ '"word": fnamemodify(v:val["filename"], ":~:p"), '.
+"          \ '"abbr": v:val["name"], '.
+"          \ '"menu": fnamemodify(v:val["filename"], ":~:h"), '.
+"          \ '"dup": 1, '.
+"          \ '}')
+"    return files
+"endfunction
+"let g:LookupFile_LookupFunc = 'LookupFile_FuzzyFunc'
 
 " genutils
 " ---------------------------------------------------
