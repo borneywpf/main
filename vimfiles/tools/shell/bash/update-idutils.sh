@@ -12,6 +12,7 @@ if [ -f "${DEST}/id-lang-autogen.map" ]; then
 else
     LANG_MAP="${TOOLS}/idutils/id-lang.map"
 fi
+echo "  |- mkid --file=\"${TMP}\" --include=\"text\" --lang-map=\"${LANG_MAP}\" --files0-from=\"${DEST}/idutils-files\""
 mkid --file="${TMP}" --include="text" --lang-map="${LANG_MAP}" --files0-from="${DEST}/idutils-files"
 
 # replace old file

@@ -60,6 +60,9 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'vim-scripts/genutils'
 Plugin 'borneywpf/lookupfile'
 "Plugin 'Yggdroot/LeaderF'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+Plugin 'mileszs/ack.vim'
 call vundle#end()
 " =======================================================
 
