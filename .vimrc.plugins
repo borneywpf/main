@@ -205,12 +205,12 @@ Plugin 'exvim/ex-hierarchy'
 
 nnoremap <unique> <leader>hv :EXHierarchyCWord<CR>
 
-" ex-taglist: invoke by <F4>
+" ex-taglist: invoke by <Ctrl-t>
 " ---------------------------------------------------
 Plugin 'exvim/ex-taglist'
 
-" F4:  Switch on/off TagList
-nnoremap <unique> <silent> <F4> :TlistToggle<CR>
+" Ctrl-t:  Switch on/off TagList
+nnoremap <unique> <silent> <C-t> :TlistToggle<CR>
 
 "let Tlist_Ctags_Cmd = $VIM.'/vimfiles/ctags.exe' " location of ctags tool
 let Tlist_Show_One_File = 1 " Displaying tags for only one file~
@@ -243,7 +243,7 @@ let tlist_actionscript_settings = 'actionscript;c:class;f:method;p:property;v:va
 " " ---------------------------------------------------
 " Plugin 'exvim/ex-tagbar'
 
-" nnoremap <unique> <silent> <F4> :TagbarToggle<CR>
+" nnoremap <unique> <silent> <C-t> :TagbarToggle<CR>
 
 " let g:tagbar_sort = 0
 " let g:tagbar_map_preview = '<CR>'
@@ -437,7 +437,7 @@ xmap s <Plug>VSurround
 " nerdtree: invoke by :NERDTreeToggle
 " ---------------------------------------------------
 Plugin 'scrooloose/nerdtree'
-nnoremap <unique> <silent> <C-F8> :NERDTreeToggle<CR>
+nnoremap <unique> <silent> <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeWinPos = "right"
 let g:NERDTreeWinSize = 30
 let g:NERDTreeMouseMode = 1
