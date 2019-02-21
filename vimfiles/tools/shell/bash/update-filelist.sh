@@ -1,6 +1,17 @@
 #!/usr/bin/env bash
 
 # create files
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     machine=Linux;;
+    Darwin*)    machine=Mac;;
+    CYGWIN*)    machine=Cygwin;;
+    MINGW*)     machine=MinGw;;
+    *)          machine="UNKNOWN:${unameOut}"
+esac
+
+echo "Find Os:"${machine}
+
 echo "Creating Filelist..."
 
 ROOT_DIR=`pwd`
@@ -19,11 +30,19 @@ fi
 echo "  |- generate ${TMP}"
 
 TMP_FILE="${TMP}".tmp
-
 if test "${FOLDERS}" != ""; then
     find ${FORCE_POSIX_REGEX_1} . -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} ${IS_EXCLUDE} -regex ".*/("${FOLDERS}")/.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" -exec grep -Iq . {} \; -and -print > "${TMP}"
 else
-    find ${FORCE_POSIX_REGEX_1} . -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" -exec grep -Iq . {} \; -and -print > "${TMP}"
+    if [ "${machine}" = "Linux" ]; then
+        echo "  |- find ${FORCE_POSIX_REGEX_1} . -type f -not -path \"*/\.*\" ${FORCE_POSIX_REGEX_2} -regex \".*\.(\"${FILE_SUFFIXS}\")$\" -exec grep -Iq . {} \; -and -print > \"\"${TMP}\""
+        find ${FORCE_POSIX_REGEX_1} . -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" -exec grep -Iq . {} \; -and -print > "${TMP}"
+    elif [ "${machine}" = "Mac" ]; then
+        echo "  |- find ${FORCE_POSIX_REGEX_1} . -type f -not -path \"*/\.*\" ${FORCE_POSIX_REGEX_2} -regex \".*\.(\"${FILE_SUFFIXS}\")$\" -exec grep -Il \"\" {} \; -and -print > \"\"${TMP}\""
+        find ${FORCE_POSIX_REGEX_1} . -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" -exec grep -Il "" {} \; -and -print > "${TMP}"
+    else
+        echo "  |- find ${FORCE_POSIX_REGEX_1} . -type f -not -path \"*/\.*\" ${FORCE_POSIX_REGEX_2} -regex \".*\.(\"${FILE_SUFFIXS}\")$\" -exec grep -Iq . {} \; -and -print > \"\"${TMP}\""
+        find ${FORCE_POSIX_REGEX_1} . -type f -not -path "*/\.*" ${FORCE_POSIX_REGEX_2} -regex ".*\.("${FILE_SUFFIXS}")$" -exec grep -Iq . {} \; -and -print > "${TMP}"
+    fi
 
 fi
 
